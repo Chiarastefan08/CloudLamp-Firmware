@@ -1,0 +1,17 @@
+# File di compilazione Arduino
+*.spec
+*.exe
+*.elf
+*.bin
+*.hex
+
+# Cartelle temporanee di build
+build/
+bin/
+layout/
+
+# File di sistema e IDE
+.DS_Store
+.vscode/
+.idea/
+*.swp
