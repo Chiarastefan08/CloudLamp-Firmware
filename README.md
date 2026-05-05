@@ -11,10 +11,15 @@ GND (-) GND Comune , è importante che arduino e aliementatore siano uniti
 
 # Tabella componenti per tinkercad 
 Componente        | Valore/Modello         | Scopo
+
 Microcontrollore  | Arduino Uno R3         | Cervello del sistema
+
 Striscia LED      | WS2812B (NeoPixel)     | Illuminazione RGB
+
 Alimentatore      | 5V (minimo 2A)         | Potenza per i LED
+
 Resistenza        | 330 Ω                  | Protezione pin dati
+
 Condensatore      | 1000 μF                | Protezione sbalzi tensione
 
 # Librerie necessarie 
@@ -27,4 +32,10 @@ Per garantire bassa latenza e sincronizzazione perfetta con l'audio, il firmware
    -byte 0: intensità rosso (R) [0-255]
    -byte 1: intensità verde (G) [0-255]
    -byte 2: intensità blu (B) [0-255]
+  
+# Quindi come testare il codice 
+1. Caricare lo sketch `src/cloud_lamp_firmware.ino` su Arduino.
+2. Aprire il Monitor Seriale (baud rate 115200).
+3. Inviare pacchetti di 3 byte (RGB) per cambiare colore alla nuvola.   
+
   
