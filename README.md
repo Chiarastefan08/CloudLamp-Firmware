@@ -9,6 +9,14 @@ WS2812B data(DIN) pin 6 , collegato tramite una resistenza da 330Ω
 Alimentazione (+) 5V esterni, condensatore da 1000µF in parallelo
 GND (-) GND Comune , è importante che arduino e aliementatore siano uniti 
 
+# Tabella componenti per tinkercad 
+Componente        | Valore/Modello         | Scopo
+Microcontrollore  | Arduino Uno R3         | Cervello del sistema
+Striscia LED      | WS2812B (NeoPixel)     | Illuminazione RGB
+Alimentatore      | 5V (minimo 2A)         | Potenza per i LED
+Resistenza        | 330 Ω                  | Protezione pin dati
+Condensatore      | 1000 μF                | Protezione sbalzi tensione
+
 # Librerie necessarie 
 FastLED per la gestione dei led WS2812B
 
