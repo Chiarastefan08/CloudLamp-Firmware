@@ -9,6 +9,43 @@ WS2812B data(DIN) pin 6 , collegato tramite una resistenza da 330Ω
 Alimentazione (+) 5V esterni, condensatore da 1000µF in parallelo
 GND (-) GND Comune , è importante che arduino e aliementatore siano uniti 
 
+# Collegamenti
+Poiché Tinkercad non supporta l'ESP32, lo schema mostra un Arduino Uno. Tuttavia, nel circuito reale:
+Il pin dati della striscia andrà collegato al GPIO 2 dell'ESP32.
+È fondamentale mantenere il GND in comune tra ESP32, Alimentatore e Striscia LED, quindi quello non cambia 
+
+# Codice
+Il codice configurato per essere compilato con PlatformIO, cambia : 
+
+#include <Arduino.h> // Obbligatorio per PlatformIO
+#include <Adafruit_NeoPixel.h> //contiene i comandi per gestire la striscia led
+
+#define PIN        2    // Usiamo il GPIO 2 per ESP32
+#define NUMPIXELS 30  //numero di led nella striscia
+
+Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800); //È come se dessimo un nome alla nostra striscia e le dicessimo come "parlare", quidni crea l'oggewtto pixel
+
+void setup() {
+  pixels.begin(); //accende la comunicazione con la striscia
+  Serial.begin(115200); // La velocità che serve per comunicare con QT
+}
+
+void loop() {
+  if (Serial.available() >= 3) {
+    int r = Serial.read();
+    int g = Serial.read();
+    int b = Serial.read();
+
+    //controlla che siano arrivati 3 byte per il concetto RGB e prende i 3 numeri
+
+    //si passa tutti i led (30)  e gli emtte dentor il colore che ha ricevuto
+    for(int i=0; i<NUMPIXELS; i++) {
+      pixels.setPixelColor(i, pixels.Color(r, g, b));
+    }
+    pixels.show();
+  }
+}
+
 # Tabella componenti per tinkercad 
 Componente        | Valore/Modello         | Scopo
 
